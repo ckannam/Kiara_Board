@@ -1,0 +1,275 @@
+:root {
+  --bg:      #0b0e18;
+  --panel:   #12162a;
+  --panel-2: #161b31;
+  --line:    #232845;
+  --text:    #e9ebf5;
+  --muted:   #8f97b8;
+  --garnet:  #8c1e3c;
+  --garnet-2:#b3254c;
+  --gold:    #e7c66b;
+  --green:   #6ad18b;
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.4;
+  padding-bottom: 40px;
+}
+.app { max-width: 480px; margin: 0 auto; padding: 14px 14px 0; }
+
+/* Header */
+.header { display: flex; align-items: center; gap: 12px; padding: 6px 2px 14px; }
+.crest {
+  width: 50px; height: 50px; border-radius: 50%; object-fit: contain;
+  background: #fff; padding: 3px; flex: 0 0 auto;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.12), 0 4px 12px rgba(0,0,0,.35);
+}
+.crest-fallback {
+  width: 50px; height: 50px; flex: 0 0 auto; border-radius: 50%;
+  background: radial-gradient(circle at 50% 35%, #1b2236, #0b0e18 72%);
+  border: 1px solid rgba(255,255,255,.14); display: flex;
+  align-items: center; justify-content: center;
+  font-size: 26px; line-height: 1;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.08), 0 4px 12px rgba(0,0,0,.35);
+}
+.header .title { flex: 1; }
+.header .title b { font-size: 19px; display: block; letter-spacing: .2px; }
+.header .live { font-size: 12px; color: var(--green); display: flex; align-items: center; gap: 6px; margin-top: 3px; }
+.header .live .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .35; } }
+
+/* Tabs */
+.tabs { display: flex; gap: 5px; background: var(--panel); padding: 4px; border-radius: 12px; margin-bottom: 13px; }
+.tabs button {
+  flex: 1; border: 0; background: transparent; color: var(--muted);
+  font-size: 13px; font-weight: 600; padding: 9px 0; border-radius: 9px; cursor: pointer;
+  font-family: inherit;
+}
+.tabs button.on { background: var(--garnet); color: #fff; }
+
+/* Submit button */
+.submit {
+  width: 100%; border: 0; cursor: pointer; font-family: inherit;
+  background: linear-gradient(135deg, var(--garnet), var(--garnet-2));
+  color: #fff; font-weight: 700; font-size: 15px; padding: 15px; border-radius: 13px;
+  box-shadow: 0 6px 18px rgba(140,30,60,.4); margin-bottom: 14px;
+}
+.submit:active { transform: translateY(1px); }
+
+/* Game cards */
+.game { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 12px 13px; margin-bottom: 11px; }
+.game .gh { display: flex; align-items: center; justify-content: space-between; margin-bottom: 9px; }
+.game .gh b { font-size: 14px; }
+.game .gh span { font-size: 11px; color: var(--muted); }
+.row { display: flex; align-items: center; gap: 10px; padding: 5px 0; font-size: 14px; }
+.row .pos { width: 22px; text-align: center; font-weight: 700; color: var(--muted); font-size: 13px; }
+.row .nm { flex: 1; }
+.row .sc { color: var(--muted); font-variant-numeric: tabular-nums; }
+.row.top .nm { font-weight: 700; }
+.row.top .sc { color: var(--gold); font-weight: 700; }
+.row .pts { font-size: 11px; color: var(--muted); margin-left: 6px; }
+.empty { color: var(--muted); font-size: 13px; padding: 4px 0; font-style: italic; }
+
+/* Overall */
+.overall { background: linear-gradient(135deg, #1b1326, #171b30); border: 1px solid #3a2a4e; border-radius: 14px; padding: 13px; margin-top: 4px; }
+.overall .ttl { font-size: 10.5px; text-transform: uppercase; letter-spacing: 1px; color: #caa6ff; margin-bottom: 9px; }
+.overall .row .pts-big { font-weight: 700; font-variant-numeric: tabular-nums; }
+.overall .row.top .pts-big { color: var(--gold); }
+
+/* Modal */
+.modal-bg { position: fixed; inset: 0; background: rgba(5,7,14,.72); display: none; align-items: flex-end; justify-content: center; z-index: 50; }
+.modal-bg.show { display: flex; }
+.modal { background: var(--panel-2); width: 100%; max-width: 480px; border-radius: 18px 18px 0 0; padding: 18px 16px 24px; border-top: 1px solid var(--line); }
+.modal h3 { margin: 2px 0 12px; font-size: 17px; }
+.modal textarea {
+  width: 100%; min-height: 92px; resize: vertical; background: var(--bg); color: var(--text);
+  border: 1px solid var(--line); border-radius: 11px; padding: 11px; font: inherit; font-size: 14px;
+}
+.preview { margin: 11px 0; padding: 11px 13px; border-radius: 11px; font-size: 14px; display: none; }
+.preview.ok { display: block; background: rgba(106,209,139,.1); border: 1px solid rgba(106,209,139,.35); }
+.preview.err { display: block; background: rgba(179,37,76,.12); border: 1px solid rgba(179,37,76,.4); color: #f2a9ba; }
+.preview .big { font-weight: 700; font-size: 15px; }
+
+.label { font-size: 11px; text-transform: uppercase; letter-spacing: .8px; color: var(--muted); margin: 6px 0; }
+.name-input { width: 100%; background: var(--bg); color: var(--text); border: 1px solid var(--line); border-radius: 11px; padding: 11px; font: inherit; font-size: 14px; }
+.suggest { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 6px; }
+.suggest button {
+  border: 1px solid var(--line); background: var(--panel); color: var(--text);
+  border-radius: 20px; padding: 7px 13px; font: inherit; font-size: 13px; cursor: pointer;
+}
+.suggest button.sel { background: var(--garnet); border-color: var(--garnet); color: #fff; font-weight: 600; }
+
+.modal-actions { display: flex; gap: 10px; margin-top: 16px; }
+.modal-actions button { flex: 1; border: 0; border-radius: 12px; padding: 13px; font: inherit; font-weight: 700; font-size: 14px; cursor: pointer; }
+.btn-go { background: linear-gradient(135deg, var(--garnet), var(--garnet-2)); color: #fff; }
+.btn-go:disabled { opacity: .4; }
+.btn-cancel { background: var(--panel); color: var(--muted); }
+
+/* Toast */
+.toast { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%); background: var(--panel-2); border: 1px solid var(--line); color: var(--text); padding: 11px 18px; border-radius: 12px; font-size: 14px; opacity: 0; transition: opacity .25s; pointer-events: none; z-index: 60; }
+.toast.show { opacity: 1; }
+.updating { font-size: 10px; color: var(--muted); }
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   Per-game skins — each card dresses up as its own game.
+   The board chrome (header/tabs/overall) stays garnet so it reads as one app.
+   ───────────────────────────────────────────────────────────────────────────── */
+
+/* Krillion — the daily dive: night-ocean, pixel wordmark, cyan + pink glitch */
+.game[data-game="krillion"] {
+  background: linear-gradient(180deg, #071734 0%, #040e1d 72%);
+  border-color: #123a5e;
+}
+.game[data-game="krillion"] .gh b {
+  font-family: 'Press Start 2P', monospace; font-size: 11px; letter-spacing: 1px;
+  color: #6ceaf7; text-transform: uppercase;
+}
+.game[data-game="krillion"] .gh span { color: #5b89b8; }
+.game[data-game="krillion"] .pos { color: #3a6ea5; }
+.game[data-game="krillion"] .row .sc { color: #8fd9e6; }
+.game[data-game="krillion"] .row.top .sc { color: #fff; text-shadow: 0 0 9px #49dff0; }
+.game[data-game="krillion"] .pts { color: #4e7ba8; }
+.game[data-game="krillion"] .empty { color: #4e7ba8; }
+
+/* GnarlyQ — 8-bit arcade: bright panel, blue pixel type */
+.game[data-game="gnarlyq"] {
+  background: #eaf0fb; border-color: #c4d2ef;
+}
+.game[data-game="gnarlyq"] .gh b {
+  font-family: 'Press Start 2P', monospace; font-size: 11px; letter-spacing: 1px;
+  color: #2f6bff; text-transform: uppercase;
+}
+.game[data-game="gnarlyq"] .gh span { color: #6b7da6; }
+.game[data-game="gnarlyq"] .pos { color: #90a0c4; }
+.game[data-game="gnarlyq"] .row .nm { color: #14213d; }
+.game[data-game="gnarlyq"] .row .sc { color: #51618a; }
+.game[data-game="gnarlyq"] .row.top .sc {
+  color: #2f6bff; font-family: 'Press Start 2P', monospace; font-size: 11px;
+}
+.game[data-game="gnarlyq"] .pts { color: #6b7da6; }
+.game[data-game="gnarlyq"] .empty { color: #6b7da6; }
+
+/* MapTap — black space globe: cyan hairline, mono, SCORE-box lead */
+.game[data-game="maptap"] {
+  background: radial-gradient(130% 95% at 12% 115%, #0c2e4e 0%, #000 56%);
+  border-color: #17434d;
+}
+.game[data-game="maptap"] .gh b {
+  font-family: 'Space Mono', monospace; font-weight: 700; letter-spacing: 1px; color: #2ee6e6;
+}
+.game[data-game="maptap"] .gh span { color: #4b7c86; font-family: 'Space Mono', monospace; font-size: 10px; }
+.game[data-game="maptap"] .pos { color: #3f7f88; }
+.game[data-game="maptap"] .row .nm { font-family: 'Space Mono', monospace; }
+.game[data-game="maptap"] .row .sc { color: #79c7cf; font-family: 'Space Mono', monospace; }
+.game[data-game="maptap"] .row.top .sc {
+  color: #2ee6e6; border: 1px solid #2ee6e6; border-radius: 5px; padding: 1px 7px;
+}
+.game[data-game="maptap"] .pts { color: #4b7c86; }
+.game[data-game="maptap"] .empty { color: #4b7c86; }
+
+/* Farflung — vintage expedition: parchment, dashed border, maroon slab serif */
+.game[data-game="farflung"] {
+  background: #e9ddc2; border: 1px dashed #b08a5a;
+}
+.game[data-game="farflung"] .gh b {
+  font-family: 'Zilla Slab', serif; font-weight: 700; font-size: 15px;
+  letter-spacing: .5px; color: #8a2b2b; text-transform: uppercase;
+}
+.game[data-game="farflung"] .gh span { color: #8a7250; font-family: 'Zilla Slab', serif; }
+.game[data-game="farflung"] .pos { color: #a98a5e; }
+.game[data-game="farflung"] .row { font-family: 'Zilla Slab', serif; }
+.game[data-game="farflung"] .row .nm { color: #3a2c20; }
+.game[data-game="farflung"] .row .sc { color: #6b5436; }
+.game[data-game="farflung"] .row.top .sc { color: #8a2b2b; font-weight: 700; }
+.game[data-game="farflung"] .pts { color: #8a7250; }
+.game[data-game="farflung"] .empty { color: #8a7250; font-style: italic; }
+
+@media (prefers-reduced-motion: reduce) {
+  .header .live .dot { animation: none; }
+  .submit:active { transform: none; }
+}
+
+/* Game cards are tappable → open the detail/charts view */
+.game { cursor: pointer; }
+.game:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.chev { font-style: normal; opacity: .7; }
+
+/* ── Detail panel (charts) ─────────────────────────────────────────────────── */
+.detail {
+  background: #0d1124; width: 100%; max-width: 480px; border-radius: 18px 18px 0 0;
+  border-top: 1px solid var(--line); padding: 16px 16px 26px; max-height: 88vh; overflow-y: auto;
+}
+.detail-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
+.detail-head b { font-size: 18px; }
+.detail-close {
+  border: 0; background: var(--panel); color: var(--muted); width: 34px; height: 34px;
+  border-radius: 9px; font-size: 15px; cursor: pointer;
+}
+/* game wordmark in the detail header, matching each card skin */
+.detail-head[data-game="krillion"] b { font-family: 'Press Start 2P', monospace; font-size: 13px; color: #6ceaf7; text-transform: uppercase; }
+.detail-head[data-game="gnarlyq"] b  { font-family: 'Press Start 2P', monospace; font-size: 13px; color: #4f86ff; text-transform: uppercase; }
+.detail-head[data-game="maptap"] b   { font-family: 'Space Mono', monospace; font-weight: 700; color: #2ee6e6; letter-spacing: 1px; }
+.detail-head[data-game="farflung"] b { font-family: 'Zilla Slab', serif; font-weight: 700; color: #d2574f; text-transform: uppercase; letter-spacing: .5px; }
+
+.chart-title { font-size: 11px; text-transform: uppercase; letter-spacing: .9px; color: var(--muted); margin: 18px 0 8px; }
+.chart-empty { color: var(--muted); font-size: 13px; font-style: italic; padding: 10px 0; }
+
+.linechart { width: 100%; height: 190px; display: block; }
+.linechart .grid { stroke: #222842; stroke-width: 1; }
+.linechart .ylab { fill: #6b7395; font-size: 9px; text-anchor: end; font-family: 'Space Mono', monospace; }
+.linechart .xlab { fill: #6b7395; font-size: 9px; font-family: 'Space Mono', monospace; }
+
+.legend { display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px; }
+.legend .lg { display: flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--text); }
+.legend .lg i { width: 11px; height: 11px; border-radius: 3px; display: inline-block; }
+
+.bars { display: flex; flex-direction: column; gap: 8px; }
+.bar-row { display: flex; align-items: center; gap: 10px; }
+.bar-nm { width: 58px; font-size: 13px; flex: 0 0 auto; }
+.bar-track { flex: 1; background: #1a1f38; border-radius: 6px; height: 16px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 6px; min-width: 6px; }
+.bar-val { width: 28px; text-align: right; font-size: 13px; font-variant-numeric: tabular-nums; color: var(--muted); }
+
+/* ── Weekly awards ─────────────────────────────────────────────────────────── */
+.awards-btn {
+  flex: 0 0 auto; border: 1px solid var(--line); background: var(--panel);
+  width: 40px; height: 40px; border-radius: 11px; font-size: 19px; cursor: pointer;
+  line-height: 1; display: flex; align-items: center; justify-content: center;
+}
+.awards-btn:active { transform: scale(.94); }
+
+.awards {
+  background: linear-gradient(180deg, #1a1326 0%, #0d1124 42%); width: 100%; max-width: 480px;
+  border-radius: 18px 18px 0 0; border-top: 1px solid var(--gold);
+  padding: 18px 16px 26px; max-height: 88vh; overflow-y: auto;
+}
+.awards-head { display: flex; align-items: center; justify-content: space-between; }
+.awards-head b { font-size: 18px; }
+.awards-close {
+  border: 0; background: var(--panel); color: var(--muted); width: 34px; height: 34px;
+  border-radius: 9px; font-size: 15px; cursor: pointer;
+}
+.awards-sub { font-size: 11px; text-transform: uppercase; letter-spacing: .9px; color: var(--muted); margin: 2px 0 14px; }
+.awards-empty { color: var(--muted); font-size: 13.5px; font-style: italic; padding: 8px 2px 4px; }
+
+.award {
+  display: flex; align-items: center; gap: 12px; padding: 12px 13px; margin-bottom: 9px;
+  background: var(--panel-2); border: 1px solid var(--line); border-left: 3px solid var(--aw);
+  border-radius: 13px;
+}
+.award[data-champion] {
+  background: linear-gradient(135deg, rgba(231,198,107,.14), rgba(140,30,60,.14));
+  border-color: var(--gold);
+}
+.aw-emoji { font-size: 26px; line-height: 1; flex: 0 0 auto; }
+.aw-body { flex: 1; min-width: 0; }
+.aw-title { font-size: 11px; text-transform: uppercase; letter-spacing: .7px; color: var(--muted); }
+.aw-winner { font-size: 17px; font-weight: 700; color: var(--text); margin-top: 1px; }
+.award[data-champion] .aw-winner { color: var(--gold); }
+.aw-pts { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; flex: 0 0 auto; text-align: right; }
