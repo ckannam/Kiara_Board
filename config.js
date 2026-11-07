@@ -4,9 +4,8 @@
   'use strict';
 
   // The friend group. Add names here; the typeahead picks them up automatically.
-  // PLACEHOLDER names — swap these for Kiara's group.
   var PLAYERS = [
-    'Kiara', 'Player 2', 'Player 3', 'Player 4', 'Player 5'
+    'Kiara', 'Mila', 'Renee', 'Karisma'
   ];
 
   // Game metadata. `emoji` + `label` drive the UI; `higher` = higher score wins.
