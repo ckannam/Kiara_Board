@@ -20,13 +20,12 @@
       return { game: 'gnarlyq', day: day[1], score: parseInt(pts[1], 10) };
     },
     function eraly(t) {
-      // Eraly (eraly.io) — the daily time-travel game. "Seven moments a day."
-      // TODO: we don't have a real share-text sample yet, so this detector is a
-      // stub that never matches. Once Cole sends a paste, fill in `day`/`score`
-      // regexes here (and flip CONFIG.GAMES eraly.higher if lower is better) and
-      // add a real case to test/parsers.test.js.
-      if (!/eraly/i.test(t)) return null;
-      return null; // format unknown — no false matches until we wire it up
+      // "Eraly #23 · I travelled to 1689 AD" then "▰▰▰▰▰▱▱▱▱▱ 345/700".
+      // day = the #N puzzle number; score = the number before /700 (higher is better).
+      var day = t.match(/Eraly\s*#(\d+)/i);
+      var sc  = t.match(/(\d+)\s*\/\s*\d+/);
+      if (!day || !sc) return null;
+      return { game: 'eraly', day: day[1], score: parseInt(sc[1], 10) };
     },
     function farflung(t) {
       // "Farflung #29 · 155/500 km*" — the number before /500 is the score.

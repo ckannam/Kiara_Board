@@ -25,6 +25,10 @@ const GNARLYQ = `GnarlyQ #111 🕹️
 
 45. Your move.`;
 
+const ERALY = `Eraly #23 · I travelled to 1689 AD
+▰▰▰▰▰▱▱▱▱▱ 345/700
+🟦🟦🟥🟦🟥🟩🟥`;
+
 const FARFLUNG = `Farflung #29 · 155/500 km*
 Miss · Elusive · Miss · Rare · Miss
 https://farflung.game/s/zkghfx?e=29&w=4`;
@@ -45,9 +49,11 @@ ok('GnarlyQ → score from "45 PTS", streak ignored', () => {
   assert.strictEqual(r.score, 45);
 });
 
-ok('Eraly → stub, no auto-detect yet (awaiting real share format)', () => {
-  // Placeholder until we have a sample paste; detector must not false-match.
-  assert.strictEqual(parseScore('Eraly moment 3 — the closer your guess…'), null);
+ok('Eraly → #day + score before /700', () => {
+  const r = parseScore(ERALY);
+  assert.strictEqual(r.game, 'eraly');
+  assert.strictEqual(r.day, '23');
+  assert.strictEqual(r.score, 345);
 });
 
 ok('Farflung → number before /500', () => {
