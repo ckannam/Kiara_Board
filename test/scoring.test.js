@@ -92,7 +92,7 @@ ok('overall tie-break: more games played ranks higher', () => {
     sub('B', 'krillion', '2026-11-02', 90),  // 9
     sub('B', 'gnarlyq', '2026-11-02', 100),  // 10 → B total 19, 2 games
     sub('A', 'gnarlyq', '2026-11-02', 90),   // 9  → A total 19, 2 games
-    sub('C', 'maptap', '2026-11-02', 100),   // 10 → C total 10, 1 game
+    sub('C', 'eraly', '2026-11-02', 100),    // 10 → C total 10, 1 game
   ];
   const o = overall(subs, {});
   assert.strictEqual(o[o.length - 1].player, 'C'); // fewest points last
@@ -104,7 +104,7 @@ ok('weeklyAwards picks the top points per game and overall champion', () => {
     sub('Cole', 'krillion', '2026-11-02', 210),  // krill 2nd → 9
     sub('Eitan', 'gnarlyq', '2026-11-02', 50),   // Q 1st → 10
     sub('Sam', 'gnarlyq', '2026-11-02', 40),      // Q 2nd → 9  → Sam overall 19
-    sub('Cole', 'maptap', '2026-11-02', 100),     // tapper 1st → 10
+    sub('Cole', 'eraly', '2026-11-02', 100),      // eraly 1st → 10
     sub('Tomas', 'farflung', '2026-11-02', 100),  // farflung 1st → 10
   ];
   const a = weeklyAwards(subs, {});
@@ -112,7 +112,7 @@ ok('weeklyAwards picks the top points per game and overall champion', () => {
   a.games.forEach(g => { byGame[g.gameId] = g.winners; });
   assert.deepStrictEqual(byGame.krillion, ['Sam']);
   assert.deepStrictEqual(byGame.gnarlyq, ['Eitan']);
-  assert.deepStrictEqual(byGame.maptap, ['Cole']);
+  assert.deepStrictEqual(byGame.eraly, ['Cole']);
   assert.deepStrictEqual(byGame.farflung, ['Tomas']);
   // Sam (10+9) and Cole (9+10) both total 19 → genuine co-champions.
   assert.deepStrictEqual(a.champion.winners.slice().sort(), ['Cole', 'Sam']);

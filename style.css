@@ -155,23 +155,27 @@ body {
 .game[data-game="gnarlyq"] .pts { color: #6b7da6; }
 .game[data-game="gnarlyq"] .empty { color: #6b7da6; }
 
-/* MapTap — black space globe: cyan hairline, mono, SCORE-box lead */
-.game[data-game="maptap"] {
-  background: radial-gradient(130% 95% at 12% 115%, #0c2e4e 0%, #000 56%);
-  border-color: #17434d;
+/* Eraly — daily time-travel: starry purple night, gold pixel wordmark */
+.game[data-game="eraly"] {
+  background:
+    radial-gradient(1px 1px at 18% 30%, rgba(255,255,255,.9), transparent),
+    radial-gradient(1px 1px at 72% 22%, rgba(255,255,255,.7), transparent),
+    radial-gradient(1px 1px at 46% 68%, rgba(255,255,255,.6), transparent),
+    radial-gradient(1px 1px at 88% 58%, rgba(255,255,255,.8), transparent),
+    radial-gradient(130% 100% at 50% 0%, #3a2a5e 0%, #1c1436 46%, #120b26 100%);
+  border-color: #3b2d63;
 }
-.game[data-game="maptap"] .gh b {
-  font-family: 'Space Mono', monospace; font-weight: 700; letter-spacing: 1px; color: #2ee6e6;
+.game[data-game="eraly"] .gh b {
+  font-family: 'Press Start 2P', monospace; font-size: 11px; letter-spacing: 1px;
+  color: #f0a83a; text-transform: uppercase; text-shadow: 0 0 10px rgba(240,168,58,.35);
 }
-.game[data-game="maptap"] .gh span { color: #4b7c86; font-family: 'Space Mono', monospace; font-size: 10px; }
-.game[data-game="maptap"] .pos { color: #3f7f88; }
-.game[data-game="maptap"] .row .nm { font-family: 'Space Mono', monospace; }
-.game[data-game="maptap"] .row .sc { color: #79c7cf; font-family: 'Space Mono', monospace; }
-.game[data-game="maptap"] .row.top .sc {
-  color: #2ee6e6; border: 1px solid #2ee6e6; border-radius: 5px; padding: 1px 7px;
-}
-.game[data-game="maptap"] .pts { color: #4b7c86; }
-.game[data-game="maptap"] .empty { color: #4b7c86; }
+.game[data-game="eraly"] .gh span { color: #9385c0; }
+.game[data-game="eraly"] .pos { color: #6f61a0; }
+.game[data-game="eraly"] .row .nm { color: #e8e2f6; }
+.game[data-game="eraly"] .row .sc { color: #d9b36b; }
+.game[data-game="eraly"] .row.top .sc { color: #fff; text-shadow: 0 0 9px #f0a83a; }
+.game[data-game="eraly"] .pts { color: #6f61a0; }
+.game[data-game="eraly"] .empty { color: #6f61a0; font-style: italic; }
 
 /* Farflung — vintage expedition: parchment, dashed border, maroon slab serif */
 .game[data-game="farflung"] {
@@ -214,7 +218,7 @@ body {
 /* game wordmark in the detail header, matching each card skin */
 .detail-head[data-game="krillion"] b { font-family: 'Press Start 2P', monospace; font-size: 13px; color: #6ceaf7; text-transform: uppercase; }
 .detail-head[data-game="gnarlyq"] b  { font-family: 'Press Start 2P', monospace; font-size: 13px; color: #4f86ff; text-transform: uppercase; }
-.detail-head[data-game="maptap"] b   { font-family: 'Space Mono', monospace; font-weight: 700; color: #2ee6e6; letter-spacing: 1px; }
+.detail-head[data-game="eraly"] b    { font-family: 'Press Start 2P', monospace; font-size: 13px; color: #f0a83a; text-transform: uppercase; }
 .detail-head[data-game="farflung"] b { font-family: 'Zilla Slab', serif; font-weight: 700; color: #d2574f; text-transform: uppercase; letter-spacing: .5px; }
 
 .chart-title { font-size: 11px; text-transform: uppercase; letter-spacing: .9px; color: var(--muted); margin: 18px 0 8px; }

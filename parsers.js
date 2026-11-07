@@ -19,13 +19,14 @@
       if (!day || !pts) return null;
       return { game: 'gnarlyq', day: day[1], score: parseInt(pts[1], 10) };
     },
-    function maptap(t) {
-      // "www.maptap.gg November 2" ... "Final score: 267"
-      if (!/maptap/i.test(t)) return null;
-      var day = t.match(/maptap\.gg\s+([A-Za-z]+\.?\s+\d+)/i);
-      var sc  = t.match(/Final score:\s*(\d+)/i);
-      if (!sc) return null;
-      return { game: 'maptap', day: day ? day[1].trim() : '', score: parseInt(sc[1], 10) };
+    function eraly(t) {
+      // Eraly (eraly.io) — the daily time-travel game. "Seven moments a day."
+      // TODO: we don't have a real share-text sample yet, so this detector is a
+      // stub that never matches. Once Cole sends a paste, fill in `day`/`score`
+      // regexes here (and flip CONFIG.GAMES eraly.higher if lower is better) and
+      // add a real case to test/parsers.test.js.
+      if (!/eraly/i.test(t)) return null;
+      return null; // format unknown — no false matches until we wire it up
     },
     function farflung(t) {
       // "Farflung #29 · 155/500 km*" — the number before /500 is the score.

@@ -25,10 +25,6 @@ const GNARLYQ = `GnarlyQ #111 🕹️
 
 45. Your move.`;
 
-const MAPTAP = `www.maptap.gg November 2
-92🏆 22🥺 15😝 19🤬 22🥺
-Final score: 267`;
-
 const FARFLUNG = `Farflung #29 · 155/500 km*
 Miss · Elusive · Miss · Rare · Miss
 https://farflung.game/s/zkghfx?e=29&w=4`;
@@ -49,11 +45,9 @@ ok('GnarlyQ → score from "45 PTS", streak ignored', () => {
   assert.strictEqual(r.score, 45);
 });
 
-ok('MapTap → date day + "Final score"', () => {
-  const r = parseScore(MAPTAP);
-  assert.strictEqual(r.game, 'maptap');
-  assert.strictEqual(r.day, 'November 2');
-  assert.strictEqual(r.score, 267);
+ok('Eraly → stub, no auto-detect yet (awaiting real share format)', () => {
+  // Placeholder until we have a sample paste; detector must not false-match.
+  assert.strictEqual(parseScore('Eraly moment 3 — the closer your guess…'), null);
 });
 
 ok('Farflung → number before /500', () => {

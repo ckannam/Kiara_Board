@@ -355,7 +355,7 @@ document.getElementById('games').addEventListener('keydown', function (e) {
 });
 
 // ── Weekly awards ───────────────────────────────────────────────────────────────
-// Krill/Q/Tapper/Most-Farflung of the week + overall Week Champion, over the
+// Krill/Q/Time-Traveler/Most-Farflung of the week + overall Week Champion, over the
 // trailing 7 days. Auto-pops once on the first Sunday open; the 🏆 button reopens
 // it any day. "Winner" = most placement points; ties show co-winners.
 var CHAMPION_AWARD = 'Week Champion';

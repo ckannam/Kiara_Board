@@ -13,7 +13,7 @@
   var GAMES = [
     { id: 'krillion', label: 'Krillion', emoji: '🦐', higher: true, accent: '#6ceaf7', award: 'Krill of the Week' },
     { id: 'gnarlyq',  label: 'GnarlyQ',  emoji: '🕹️', higher: true, accent: '#4f86ff', award: 'Q of the Week' },
-    { id: 'maptap',   label: 'MapTap',   emoji: '🌐', higher: true, accent: '#2ee6e6', award: 'Tapper of the Week' },
+    { id: 'eraly',    label: 'Eraly',    emoji: '⏳', higher: true, accent: '#f0a83a', award: 'Time Traveler of the Week' },
     { id: 'farflung', label: 'Farflung', emoji: '🧭', higher: true, accent: '#d2574f', award: 'Most Farflung' }
   ];
 
